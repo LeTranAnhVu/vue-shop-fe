@@ -7,7 +7,7 @@
       <h5 class="card-title">{{product.name}}</h5>
       <p>£ {{product.price}}</p>
       <!--buttons add to cart-->
-      <add-to-cart :item="product"></add-to-cart>
+      <add-to-cart :item="product" :amount="amount"></add-to-cart>
     </div>
   </div>
 </template>
@@ -21,7 +21,8 @@ export default {
     'add-to-cart': AddToCart
   },
   props: {
-    product: Object
+    product: Object,
+    amount: Number
   },
   // life cycle
   mounted () {
@@ -37,9 +38,6 @@ export default {
   methods: {
     waitForShowImage () {
       let imgEl = this.$el.getElementsByClassName('product-img')[0]
-      console.log('img-height', this.$el.getElementsByClassName('product-img'))
-      console.log('img-height', this.$el.getElementsByClassName('product-img')[0].scrollHeight)
-      console.log('img-width', imgEl.width)
       imgEl.onload = () => {
         this.isImageLoaded = true
       }
@@ -52,7 +50,6 @@ export default {
 
   .img-swrapper{
     position: relative;
-    /*overflow: hidden;*/
   }
   .img-swrapper--not-load::before{
     content: '';

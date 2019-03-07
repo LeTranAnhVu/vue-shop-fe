@@ -1,7 +1,7 @@
 <template>
   <div>
     <button
-      v-if="!isAddedToCart"
+      v-if="!addedAmount"
       class="btn btn-success add-to-cart"
       @click="addToCart"
     >Add to cart</button>
@@ -22,24 +22,26 @@
 export default {
   name: 'AddToCart',
   props: {
-    item: Object
+    item: Object,
+    amount: Number
   },
+  // Todo
   data () {
     return {
-      addedAmount: 0,
-      isAddedToCart: false
+      addedAmount: this.amount || 0
     }
   },
   methods: {
     addToCart () {
-      this.isAddedToCart = true
       this.increment()
     },
     increment () {
       this.addedAmount++
+      this.$store.commit('INCREASE_ITEM_FROM_CART', this.item)
     },
     decrement () {
       this.addedAmount--
+      this.$store.commit('DECREASE_ITEM_FROM_CART', this.item.id)
     }
   },
   watch: {

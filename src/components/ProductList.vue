@@ -6,7 +6,7 @@
            v-for="i in renderNumber"
            :key="products[i-1].id"
       >
-        <product :product="products[i-1]"></product>
+        <product :product="products[i-1]" :amount="carts[products[i-1].id] && carts[products[i-1].id].amount"></product>
       </div>
     </div>
   </div>
@@ -48,13 +48,17 @@ export default {
   data () {
     return {
       isLoading: true,
-      renderNumber: 1 // default show n products
+      renderNumber: 10 // default show n products
     }
   },
 
   computed: {
     products () {
       return this.$store.state.products
+    },
+    carts () {
+      console.log('products list carts')
+      return this.$store.state.carts
     }
   },
 
@@ -63,11 +67,9 @@ export default {
       this.stopListenScroll()
       // let this = this
       setTimeout(() => {
-        console.log('updated products')
-        this.renderNumber += 0
+        this.renderNumber += 4
       }, 500)
       setTimeout(() => {
-        console.log('add listen')
         this.startListenScroll()
       }, 2000)
     },
@@ -81,11 +83,9 @@ export default {
       }
     },
     startListenScroll () {
-      console.log('start listen')
       window.addEventListener('scroll', this.onScroll)
     },
     stopListenScroll () {
-      console.log('stop listen')
       window.removeEventListener('scroll', this.onScroll)
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <a class="navbar-brand" href="#">Shop</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -26,15 +26,23 @@
               <router-link class="dropdown-item" to="#">Other</router-link>
             </div>
           </li>
-          <!--About-->
+          <!--News-->
           <li class="nav-item">
             <router-link class="nav-link" to="#">News <span class="sr-only">(current)</span></router-link>
           </li>
+          <!--About-->
           <li class="nav-item">
             <router-link class="nav-link" to="/about">About <span class="sr-only">(current)</span></router-link>
           </li>
+          <!--Contact-->
           <li class="nav-item">
             <router-link class="nav-link" to="#">Contact <span class="sr-only">(current)</span></router-link>
+          </li>
+          <!--cart-->
+          <li class="nav-item">
+            <router-link class="nav-link" to="/checkout">
+              <cart-icon></cart-icon>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -43,8 +51,13 @@
 </template>
 
 <script>
+import CartIcon from './CartIcon'
+
 export default {
-  name: 'AppHeader'
+  name: 'AppHeader',
+  components: {
+    'cart-icon': CartIcon
+  }
 }
 </script>
 
