@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { saveImageToLocalStorage } from '../../helper/helper'
 export default {
   name: 'AddToCart',
   props: {
@@ -38,10 +39,15 @@ export default {
     increment () {
       this.addedAmount++
       this.$store.commit('INCREASE_ITEM_FROM_CART', this.item)
+      if (this.addedAmount === 1) {
+        let img = this.$el.getElementsByTagName('img')[0]
+        saveImageToLocalStorage(img)
+      }
     },
     decrement () {
       this.addedAmount--
       this.$store.commit('DECREASE_ITEM_FROM_CART', this.item.id)
+      console.log('cart list', this.$store.state.carts)
     }
   },
   watch: {
@@ -73,5 +79,19 @@ export default {
     width: 50px;
     font-size: 1.5rem;
     padding: 0
+  }
+  .basic{
+    width: 80px;
+  }
+  .basic .amount{
+    width: 100%;
+  }
+  .basic .amount .btn-item-cart{
+    width: 20px;
+    font-size: 1rem;
+    padding: 0;
+    background: transparent;
+    border-color: #000;
+    color: #000
   }
 </style>

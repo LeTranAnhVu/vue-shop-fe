@@ -3,7 +3,7 @@
     <app-header></app-header>
     <main class="container">
       <!--cache the Products page-->
-      <keep-alive include="Products">
+      <keep-alive include="['Products','Checkout']">
         <router-view></router-view>
       </keep-alive>
     </main>

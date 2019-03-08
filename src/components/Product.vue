@@ -1,13 +1,13 @@
 <template>
   <div class="card mb-5" style="width: 18rem;">
     <div class="img-swrapper" :class="{'img-swrapper--not-load': !isImageLoaded }">
-      <img class="card-img-top product-img"  :src="product.image" alt="product.name">
+      <img v-lazyload="product.image" class="card-img-top product-img"  :src="product.image" alt="product.name">
     </div>
     <div class="card-body">
       <h5 class="card-title">{{product.name}}</h5>
       <p>£ {{product.price}}</p>
       <!--buttons add to cart-->
-      <add-to-cart :item="product" :amount="amount"></add-to-cart>
+      <add-to-cart v-cart-style:primary :item="product" :amount="amount"></add-to-cart>
     </div>
   </div>
 </template>

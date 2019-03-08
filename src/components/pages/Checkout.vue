@@ -1,7 +1,7 @@
 <template>
   <section>
     <h1>Checkout page</h1>
-    <section>
+    <section >
       <!--message cart in empty-->
       <div v-if="isCartEmpty">
         <h3>Oops! Your cart is empty.</h3>
@@ -15,41 +15,51 @@
       <!--end message cart in empty-->
 
       <!--table-->
-      <table v-else class="table">
-        <thead>
-        <tr>
-          <th scope="col">Product</th>
-          <th scope="col">Image</th>
-          <th scope="col">Price(per item)</th>
-          <th scope="col">Amount</th>
-          <th scope="col">Total</th>
-        </tr>
-        </thead>
-        <tbody>
-          <tr v-for="cart in carts" :key="cart.item.id">
+      <div v-else>
+        <table  class="table">
+          <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Image</th>
+            <th scope="col">Price(per item)</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Total</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="cart-row" v-for="cart in carts" :key="cart.item.id">
             <td>{{cart.item.name}}</td>
             <td>
-              <img width="100" class="img-thumbnail" :src="cart.item.image" alt="cart.item.name">
+              <img width="100" class="img-thumbnail" :src="cart.item.image" :alt="cart.item.name">
             </td>
             <td>{{cart.item.price}}</td>
             <td>
-              <add-to-cart :item="cart.item" :amount="cart.amount"></add-to-cart>
+              <add-to-cart v-cart-style:basic :item="cart.item" :amount="cart.amount"></add-to-cart>
             </td>
             <td>{{cart.amount* cart.item.price}}</td>
           </tr>
 
-        </tbody>
-      </table>
-      <!--end table-->
+          </tbody>
+        </table>
+        <!--end table-->
+        <router-link to="/products">
+          <span>
+            shopping more...
+          </span>
+        </router-link>
+      </div>
     </section>
   </section>
 </template>
 
 <script>
 import AddToCart from '../shared/AddToCart'
-
 export default {
   name: 'Checkout',
+
+  mounted () {
+
+  },
   components: {
     'add-to-cart': AddToCart
   },
@@ -66,5 +76,9 @@ export default {
 </script>
 
 <style scoped>
+  .cart-row{
+    justify-items: center;
+    align-items: center;
+  }
 
 </style>
