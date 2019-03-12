@@ -7,7 +7,7 @@
       <h5 class="card-title">{{product.name}}</h5>
       <p>£ {{product.price}}</p>
       <!--buttons add to cart-->
-      <add-to-cart :item="product" :amount="amount"></add-to-cart>
+      <add-to-cart :item="product"></add-to-cart>
     </div>
   </div>
 </template>
@@ -21,8 +21,7 @@ export default {
     'add-to-cart': AddToCart
   },
   props: {
-    product: Object,
-    amount: Number
+    product: Object
   },
   // life cycle
   mounted () {

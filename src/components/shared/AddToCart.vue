@@ -22,13 +22,11 @@
 export default {
   name: 'AddToCart',
   props: {
-    item: Object,
-    amount: Number
+    item: Object
   },
   // Todo
   data () {
     return {
-      addedAmount: this.amount || 0
     }
   },
   methods: {
@@ -36,19 +34,15 @@ export default {
       this.increment()
     },
     increment () {
-      this.addedAmount++
       this.$store.commit('INCREASE_ITEM_FROM_CART', this.item)
     },
     decrement () {
-      this.addedAmount--
       this.$store.commit('DECREASE_ITEM_FROM_CART', this.item.id)
     }
   },
-  watch: {
+  computed: {
     addedAmount () {
-      if (this.addedAmount === 0) {
-        this.isAddedToCart = false
-      }
+      return this.$store.state.carts[this.item.id] ? this.$store.state.carts[this.item.id].amount : 0
     }
   }
 }

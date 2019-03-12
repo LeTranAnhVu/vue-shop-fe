@@ -39,7 +39,7 @@ export default new Vuex.Store({
     },
     DECREASE_ITEM_FROM_CART (state, productId) {
       const empty = 0
-      if (!productId) return null
+      if (productId === undefined || productId === null) return null
       if (state.carts[productId]) {
         // if the item is exist in cart. then decrease 1
         state.carts[productId].amount--

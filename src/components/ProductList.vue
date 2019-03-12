@@ -6,7 +6,7 @@
            v-for="i in renderNumber"
            :key="products[i-1].id"
       >
-        <product :product="products[i-1]" :amount="carts[products[i-1].id] && carts[products[i-1].id].amount"></product>
+        <product :product="products[i-1]"></product>
       </div>
     </div>
   </div>
@@ -57,7 +57,7 @@ export default {
       return this.$store.state.products
     },
     carts () {
-      console.log('products list carts')
+      console.log('products list carts changed')
       return this.$store.state.carts
     }
   },
